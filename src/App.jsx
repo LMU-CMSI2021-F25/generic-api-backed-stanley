@@ -1,35 +1,50 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [coins, setCoins] = useState([]);
+    useEffect(() => {
+      const url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd";
+      fetch(url)
+        .then((r) => r.json())
+        .then((response) => {
+          setCoins(response);
+        });
+    }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <h1>Cryptocurrency Prices</h1>
+      <div className = "card">
+        <div className = "scrollable">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>Current Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {coins &&
+                coins.map((coin) => (
+                  <tr key={coin.id}>
+                    <td>{coin.name}</td>
+                    <td>{coin.symbol}</td>
+                    <td>${coin.current_price}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is ...... {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+    
+  );
 }
 
 export default App
+
+
