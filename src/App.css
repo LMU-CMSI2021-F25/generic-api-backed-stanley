@@ -1,79 +1,157 @@
+html,
+body,
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  height: 100%;
+}
+
+#root {
+  padding: 2rem 0 0;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  margin: 0;
+  background: rgb(248, 250, 252);
+  background-image: linear-gradient(
+    180deg,
+    rgba(168, 165, 162, 0.844) 0%,
+    rgba(92, 90, 88, 0.844) 50%,
+    rgba(54, 53, 52, 0.844) 100%
+  );
+  background-attachment: fixed;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.title {
+  max-width: 960px;
+  margin: 40px auto 24px;
+  padding: 16px 24px;
+  background: rgba(54, 53, 52, 0.844);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+}
+
+.title-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-icon {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.title h1 {
+  margin: 0;
+  font-size: clamp(22px, 4vw, 40px);
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+.search-card {
+  max-width: 960px;
+  margin: 12px auto 24px;
+  padding: 12px 16px;
+  background: rgba(54, 53, 52, 0.844);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+
+}
+
+.middle {
+  display: grid;
+  align-items: 1fr auto;
+  gap: 12px;
+  align-items: center;
 }
 
 .card {
+  max-width: 960px;
+  margin: 0 auto 48px;
   padding: 50px;
   border-radius: 80px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(54, 53, 52, 0.844);
+  color: rgb(255, 255, 255);
 }
 
-.scrollable{
+.scrollable {
   height: 500px;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   border-radius: 12px;
 }
 
-table {
-  padding: 2em;
-  border: 1px solid rgba(0, 255, 255, 0.1);
-  border-collapse: collapse; 
+table.prices {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(54, 53, 52, 0.844);
   border-radius: 12px;
+  overflow: hidden;
+  padding: 0;
 }
 
-thead{
-  background-color: blue;
-  color: green;
+table.prices thead th {
+  background: rgba(54, 53, 52, 0.844);
+  color: rgb(253, 255, 253);
   position: sticky;
-  top: -1px;
+  top: 0;
+  z-index: 1;
 }
 
-th, td{
+table.prices th,
+table.prices td {
   padding: 12px 16px;
-  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
   text-align: center;
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 
-td {
+table.prices td {
   scroll-snap-align: start;
 }
 
-tbody tr:hover {
-  background: rgba(255, 255, 255, 0.1);
+table.prices tbody tr:hover {
+  background: rgba(225, 223, 221, 0.259);
+  cursor: pointer;
 }
 
+table.prices tbody tr {
+  transition: background-color 0.5s ease;
+}
 
+.footer {
+  width: 100%;
+  padding: 16px 0;
+  background: rgba(54, 53, 52, 0.844);
+  color: rgb(255, 255, 255);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: auto;
+}
 
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.App {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
