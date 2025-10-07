@@ -5,6 +5,7 @@ import "./App.css";
 function App() {
   const [coins, setCoins] = useState([]);
   const [q, setQ] = useState("");
+  const [selectedCoin, setSelectedCoin] = useState(null);
 
   useEffect(() => {
     const url =
@@ -33,15 +34,16 @@ function App() {
         </div>
       </header>
 
-      <section className="middle search-card">
+      <section className="search-card">
         <input
-          className="middle-input"
+          className="input"
+          style={{ borderRadius: "8px", backgroundColor: 'rgb(125, 255, 255)' }}
           type="text"
           placeholder="Search for a Coin!"
           value={q}
           onChange={(e) => setQ(e.target.value)}
         />
-        <div className="middle-price">
+        <div className="price">
           {q &&
             (match
               ? `$${match.current_price.toLocaleString(undefined, {
@@ -64,9 +66,19 @@ function App() {
             <tbody>
               {coins &&
                 coins.map((coin) => (
-                  <tr key={coin.id}>
+                  <tr
+                    key={coin.id}
+                    onClick={() => setSelectedCoin(coin)}
+                    style={{
+                      backgroundColor:
+                        selectedCoin.id === coin.id
+                          ? "rgba(247, 53, 53, 1)"
+                          : "transparent",
+                      cursor: "pointer",
+                    }}
+                  >
                     <td>{coin.name}</td>
-                    <td>{coin.symbol}</td>
+                    <td>{coin.symbol.toUpperCase()}</td>
                     <td>${coin.current_price}</td>
                   </tr>
                 ))}
@@ -78,7 +90,7 @@ function App() {
       <footer className="footer">
         <div className="footer-inner">
           <span>Created By: Stanley & Justin</span>
-          </div>
+        </div>
       </footer>
     </div>
   );
