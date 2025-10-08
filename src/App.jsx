@@ -18,6 +18,7 @@ const fallbackCoins = [
 function App() {
   const [coins, setCoins] = useState([]);
   const [q, setQ] = useState("");
+  const [selectedCoin, setSelectedCoin] = useState(null);
 
   useEffect(() => {
     const url =
@@ -32,10 +33,10 @@ function App() {
 
   const match = q.trim()
     ? coins.find(
-        (c) =>
-          c.name.toLowerCase() === q.trim().toLowerCase() ||
-          c.symbol.toLowerCase() === q.trim().toLowerCase()
-      )
+      (c) =>
+        c.name.toLowerCase() === q.trim().toLowerCase() ||
+        c.symbol.toLowerCase() === q.trim().toLowerCase()
+    )
     : null;
 
   return (
@@ -59,8 +60,8 @@ function App() {
           {q &&
             (match
               ? `$${match.current_price.toLocaleString(undefined, {
-                  maximumFractionDigits: 2,
-                })}`
+                maximumFractionDigits: 2,
+              })}`
               : "Not found")}
         </div>
       </section>
@@ -78,7 +79,11 @@ function App() {
             <tbody>
               {coins &&
                 coins.map((coin) => (
-                  <tr key={coin.id}>
+                  <tr
+                    key={coin.id}
+                    onClick={() => setSelectedCoin(coin)}
+                    style={{ backgroundColor: selectedCoin?.id === coin.id ? '#000000ff' : 'transparent' }}
+                  >
                     <td>{coin.name}</td>
                     <td>{coin.symbol}</td>
                     <td>${coin.current_price}</td>
@@ -87,12 +92,44 @@ function App() {
             </tbody>
           </table>
         </div>
+
+        {selectedCoin && (
+          <div className="details">
+            <h2>{selectedCoin.name} Details</h2>
+            <div className ="container">
+              <div>
+                <span>Market Cap: </span>
+                <span>{selectedCoin.market_cap?.toLocaleString()}$</span>
+              </div>
+              <div>
+                <span>24h High: </span>
+                <span>${selectedCoin.high_24h?.toLocaleString()}</span>
+              </div>
+              <div>
+                <span>24h Low: </span>
+                <span>${selectedCoin.low_24h?.toLocaleString()}</span>
+              </div>
+              <div>
+                <span>Price Change 24h: </span>
+                <span className={selectedCoin.price_change_24h > 0 ? 'positive' : 'negative'}>
+                  {selectedCoin.price_change_24h?.toFixed(2)}%
+                </span>
+              </div>
+              <div>
+                <span>All time High: </span>
+                <span>${selectedCoin.ath?.toLocaleString()}</span>
+              </div>
+              </div>
+          </div>
+        )}
       </div>
+
+
 
       <footer className="footer">
         <div className="footer-inner">
           <span>Created By: Stanley & Justin</span>
-          </div>
+        </div>
       </footer>
     </div>
   );
