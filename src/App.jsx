@@ -129,6 +129,7 @@ function App() {
       <footer className="footer">
         <div className="footer-inner">
           <span>Created By: Stanley & Justin</span>
+          <a href = "https://ysg8jr-5173.csb.app/" >CodeSandBox</a>
         </div>
       </footer>
     </div>
