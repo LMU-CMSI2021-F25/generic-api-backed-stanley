@@ -148,15 +148,12 @@ table.prices tbody tr {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
-  background-color: rgba(153, 145, 145, 0.847);
 }
 
 .container > div {
-  background: rgba(112, 94, 57, 0.844);
   padding: 15px;
   border-radius: 8px;
   background-color: rgba(81, 64, 56, 0.744);
-
 }
 
 .footer {
