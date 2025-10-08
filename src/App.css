@@ -105,7 +105,7 @@ table.prices {
 }
 
 table.prices thead th {
-  background: rgba(54, 53, 52, 0.844);
+  background: rgba(125, 103, 81, 0.844);
   color: rgb(253, 255, 253);
   position: sticky;
   top: 0;
@@ -135,23 +135,28 @@ table.prices tbody tr {
 }
 
 .details {
+  font-family: "Outfit", sans-serif;
   background: rgb(32, 32, 37);
   max-width: auto;
   margin: auto;
   padding: 10px 10px;
   border-radius: 8px;
+  background-color: rgba(116, 111, 111, 0.847);
 }
 
 .details > .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
+  background-color: rgba(153, 145, 145, 0.847);
 }
 
 .container > div {
   background: rgba(112, 94, 57, 0.844);
   padding: 15px;
   border-radius: 8px;
+  background-color: rgba(81, 64, 56, 0.744);
+
 }
 
 .footer {
