@@ -115,7 +115,7 @@ function App() {
                   {selectedCoin.price_change_24h?.toFixed(2)}%
                 </span>
               </div>
-              <div>
+              <div style={{gridColumn: 'span 2'}}>
                 <span>All time High: </span>
                 <span>${selectedCoin.ath?.toLocaleString()}</span>
               </div>
@@ -123,8 +123,6 @@ function App() {
           </div>
         )}
       </div>
-
-
 
       <footer className="footer">
         <div className="footer-inner">
