@@ -2,10 +2,22 @@ import { useState, useEffect } from "react";
 import coinImg from "./assets/coin.png";
 import "./App.css";
 
+const fallbackCoins = [
+  { id: "bitcoin", name: "Bitcoin", symbol: "btc", current_price: 48390 },
+  { id: "ethereum", name: "Ethereum", symbol: "eth", current_price: 3200 },
+  { id: "tether", name: "Tether", symbol: "usdt", current_price: 9 },
+  { id: "binancecoin", name: "Binance Coin", symbol: "bnb", current_price: 410 },
+  { id: "ripple", name: "XRP", symbol: "xrp", current_price: 0.75 },
+  { id: "cardano", name: "Cardano", symbol: "ada", current_price: 2.15 },
+  { id: "solana", name: "Solana", symbol: "sol", current_price: 150 },
+  { id: "polkadot", name: "Polkadot", symbol: "dot", current_price: 28 },
+  { id: "dogecoin", name: "Dogecoin", symbol: "doge", current_price: 0.25 },
+  { id: "usd-coin", name: "USD Coin", symbol: "usdc", current_price: 1 },
+];
+
 function App() {
   const [coins, setCoins] = useState([]);
   const [q, setQ] = useState("");
-  const [selectedCoin, setSelectedCoin] = useState(null);
 
   useEffect(() => {
     const url =
@@ -14,7 +26,8 @@ function App() {
       .then((r) => r.json())
       .then((response) => {
         setCoins(response);
-      });
+      })
+      .catch(() => setCoins(fallbackCoins));
   }, []);
 
   const match = q.trim()
@@ -34,16 +47,15 @@ function App() {
         </div>
       </header>
 
-      <section className="search-card">
+      <section className="middle search-card">
         <input
-          className="input"
-          style={{ borderRadius: "8px", backgroundColor: 'rgb(125, 255, 255)' }}
+          className="middle-input"
           type="text"
           placeholder="Search for a Coin!"
           value={q}
           onChange={(e) => setQ(e.target.value)}
         />
-        <div className="price">
+        <div className="middle-price">
           {q &&
             (match
               ? `$${match.current_price.toLocaleString(undefined, {
@@ -66,19 +78,9 @@ function App() {
             <tbody>
               {coins &&
                 coins.map((coin) => (
-                  <tr
-                    key={coin.id}
-                    onClick={() => setSelectedCoin(coin)}
-                    style={{
-                      backgroundColor:
-                        selectedCoin.id === coin.id
-                          ? "rgba(247, 53, 53, 1)"
-                          : "transparent",
-                      cursor: "pointer",
-                    }}
-                  >
+                  <tr key={coin.id}>
                     <td>{coin.name}</td>
-                    <td>{coin.symbol.toUpperCase()}</td>
+                    <td>{coin.symbol}</td>
                     <td>${coin.current_price}</td>
                   </tr>
                 ))}
@@ -90,7 +92,7 @@ function App() {
       <footer className="footer">
         <div className="footer-inner">
           <span>Created By: Stanley & Justin</span>
-        </div>
+          </div>
       </footer>
     </div>
   );
